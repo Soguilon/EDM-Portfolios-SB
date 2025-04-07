@@ -15,9 +15,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       height: 100vh;
-      overflow: hidden;
+      padding-top: 100px;
     }
 
     header {
@@ -40,6 +40,30 @@
       outline: none;
       box-shadow: 0 0 10px #00ff00;
       animation: glowBox 2s infinite alternate;
+      margin-bottom: 20px;
+    }
+
+    #results {
+      max-width: 600px;
+      width: 80%;
+      text-align: left;
+    }
+
+    .result-item {
+      background: #000;
+      color: #00ff00;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #00ff00;
+      border-radius: 8px;
+      text-decoration: none;
+      display: block;
+      box-shadow: 0 0 10px #00ff00;
+      transition: background 0.2s;
+    }
+
+    .result-item:hover {
+      background: #002200;
     }
 
     @keyframes glowText {
@@ -55,55 +79,68 @@
 </head>
 <body>
   <header>EDM Portfolios of BSIS-I102:</header>
-  <input type="text" id="searchInput" placeholder="Search by name..." onkeydown="handleKey(event)" />
+  <input type="text" id="searchInput" placeholder="Search by last name..." oninput="handleSearch()" />
+  <div id="results"></div>
 
   <script>
     const portfolioLinks = {
-      "carl": "https://carlosa012.github.io/EDM-Portfolio/",
-      "art": "https://artjohnamaro.github.io/EDM-PORTFOLIO/",
-      "cy": "https://cyjiix29.github.io/EDM-V3/",
-      "byron": "https://byronpogi.github.io/EDM-PORTFOLIO/",
-      "zon": "https://github.com/zon0901/EDM-Portfolio",
-      "mcab": "https://mcab3.github.io/EDM-Portfolio/",
-      "mark": "https://github.com/Mark4864/EDM-Portfolio",
-      "moses": "https://moses032005.github.io/EDM_Moses-David/",
-      "crtzk": "https://github.com/crtzk/EDM",
-      "david": "https://davidlenard.github.io/EDM-David/",
-      "jerald": "https://jerald240010.github.io/EDM-Portfolio/",
-      "restia": "https://github.com/Restia-F/fdelrosario",
-      "prince": "https://princeeee26.github.io/EDM-Portfolio-Prince/",
-      "roanne": "https://roannefajardo.github.io/EDM-Fajardo/",
-      "vince": "https://github.com/porkenvince/EDM-Portfolio/tree/main",
-      "tatin": "https://tatinzzz.github.io/EDM-Portfolio/",
-      "austin": "https://austincgarcia.github.io/AustinEDM/",
-      "greiden": "https://greidengueco.github.io/EDM-Portfolio/",
-      "cmhalili": "https://cmhalili.github.io/Tasks-EDM-Portfolio/",
-      "aljohn": "https://github.com/Aljohn0809/EDM-PORTFOLIO",
-      "lek": "https://leklaquindanum.github.io/EDM-Portfolio/",
-      "referenz": "https://referenz18.github.io/EDM-V3/",
-      "ryza": "https://ryzamanarang.github.io/EDM-Manarang/",
-      "munoz": "https://munoz-24-0431.github.io/EDM-Midterm-Task-Munoz/",
-      "pangilinan": "https://npangilinan-cca.github.io/EDM-N.Pangilinan/",
-      "dtx": "https://dtx-byte.github.io/Dxt_EDMPortfolio/",
-      "justine": "https://github.com/justine09902/justine09902/blob/main/README.md",
-      "iverson": "https://iverson748.github.io/EDM-Portfolio/",
-      "john": "https://github.com/jrecapor/EDM-John-Paul",
-      "darrel": "https://dsanchez05.github.io/EDM-Sanchez-Darrel-Matthew-C./",
-      "soguilon": "https://soguilon.github.io/EDM-Tasks-Portfolio/",
-      "bj": "https://bjiotiglao29.github.io/EDM-Portfolio/",
-      "zomue": "https://zomue.github.io/"
+      "Aguinaldo": "https://carlosa012.github.io/EDM-Portfolio/",
+      "Amaro": "https://artjohnamaro.github.io/EDM-PORTFOLIO/",
+      "Angeles": "https://cyjiix29.github.io/EDM-V3/",
+      "Bondoc": "https://byronpogi.github.io/EDM-PORTFOLIO/",
+      "Bonifcaio": "https://github.com/zon0901/EDM-Portfolio",
+      "Cabrera": "https://mcab3.github.io/EDM-Portfolio/",
+      "Cariño": "https://github.com/Mark4864/EDM-Portfolio",
+      "Moses": "https://moses032005.github.io/EDM_Moses-David/",
+      "Cortez": "https://github.com/crtzk/EDM",
+      "David": "https://davidlenard.github.io/EDM-David/",
+      "Dela Rosa": "https://jerald240010.github.io/EDM-Portfolio/",
+      "Delrosario": "https://github.com/Restia-F/fdelrosario",
+      "Divina": "https://princeeee26.github.io/EDM-Portfolio-Prince/",
+      "Fajardo": "https://roannefajardo.github.io/EDM-Fajardo/",
+      "Ferrer": "https://github.com/porkenvince/EDM-Portfolio/tree/main",
+      "Francia": "https://tatinzzz.github.io/EDM-Portfolio/",
+      "Garcia": "https://austincgarcia.github.io/AustinEDM/",
+      "Gueco": "https://greidengueco.github.io/EDM-Portfolio/",
+      "Halili": "https://cmhalili.github.io/Tasks-EDM-Portfolio/",
+      "Isaac": "https://github.com/Aljohn0809/EDM-PORTFOLIO",
+      "Laquindanum": "https://leklaquindanum.github.io/EDM-Portfolio/",
+      "Macula": "https://referenz18.github.io/EDM-V3/",
+      "Manarang": "https://ryzamanarang.github.io/EDM-Manarang/",
+      "Muñoz": "https://munoz-24-0431.github.io/EDM-Midterm-Task-Munoz/",
+      "Pangilinan": "https://npangilinan-cca.github.io/EDM-N.Pangilinan/",
+      "Pascubillo": "https://dtx-byte.github.io/Dxt_EDMPortfolio/",
+      "Pineda": "https://github.com/justine09902/justine09902/blob/main/README.md",
+      "Quiambao": "https://iverson748.github.io/EDM-Portfolio/",
+      "Recapor": "https://github.com/jrecapor/EDM-John-Paul",
+      "Sanchez": "https://dsanchez05.github.io/EDM-Sanchez-Darrel-Matthew-C./",
+      "Soguilon": "https://soguilon.github.io/EDM-Tasks-Portfolio/",
+      "Tiglao": "https://bjiotiglao29.github.io/EDM-Portfolio/",
+      "Yumang": "https://zomue.github.io/"
     };
 
-    function handleKey(event) {
-      if (event.key === "Enter") {
-        const input = document.getElementById("searchInput").value.toLowerCase().trim();
-        for (const key in portfolioLinks) {
-          if (input.includes(key)) {
-            window.location.href = portfolioLinks[key];
-            return;
-          }
-        }
-        alert("No matching portfolio found.");
+    function handleSearch() {
+      const input = document.getElementById("searchInput").value.toLowerCase().trim();
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+
+      if (!input) return;
+
+      const matches = Object.entries(portfolioLinks).filter(([name]) =>
+        name.toLowerCase().includes(input)
+      );
+
+      if (matches.length > 0) {
+        matches.forEach(([name, url]) => {
+          const link = document.createElement("a");
+          link.href = url;
+          link.target = "_blank";
+          link.className = "result-item";
+          link.textContent = `${name} ➤ ${url}`;
+          resultsDiv.appendChild(link);
+        });
+      } else {
+        resultsDiv.innerHTML = "<p style='color:#00ff00;'>No matching portfolios found.</p>";
       }
     }
   </script>
