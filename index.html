@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EDM Portfolios</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(120deg, #000 30%, #001a00 70%);
+      color: #00ff00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      font-size: 2.5rem;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+      margin-bottom: 30px;
+      animation: glowText 2s infinite alternate;
+    }
+
+    input[type="text"] {
+      padding: 15px 20px;
+      width: 60%;
+      max-width: 500px;
+      font-size: 1.2rem;
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      background-color: #000;
+      color: #00ff00;
+      outline: none;
+      box-shadow: 0 0 10px #00ff00;
+      animation: glowBox 2s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #00ff00; }
+      to { text-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00; }
+    }
+
+    @keyframes glowBox {
+      from { box-shadow: 0 0 10px #00ff00; }
+      to { box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
+    }
+  </style>
+</head>
+<body>
+  <header>EDM Portfolios of BSIS-I102:</header>
+  <input type="text" id="searchInput" placeholder="Search by name..." onkeydown="handleKey(event)" />
+
+  <script>
+    const portfolioLinks = {
+      "carl": "https://carlosa012.github.io/EDM-Portfolio/",
+      "art": "https://artjohnamaro.github.io/EDM-PORTFOLIO/",
+      "cy": "https://cyjiix29.github.io/EDM-V3/",
+      "byron": "https://byronpogi.github.io/EDM-PORTFOLIO/",
+      "zon": "https://github.com/zon0901/EDM-Portfolio",
+      "mcab": "https://mcab3.github.io/EDM-Portfolio/",
+      "mark": "https://github.com/Mark4864/EDM-Portfolio",
+      "moses": "https://moses032005.github.io/EDM_Moses-David/",
+      "crtzk": "https://github.com/crtzk/EDM",
+      "david": "https://davidlenard.github.io/EDM-David/",
+      "jerald": "https://jerald240010.github.io/EDM-Portfolio/",
+      "restia": "https://github.com/Restia-F/fdelrosario",
+      "prince": "https://princeeee26.github.io/EDM-Portfolio-Prince/",
+      "roanne": "https://roannefajardo.github.io/EDM-Fajardo/",
+      "vince": "https://github.com/porkenvince/EDM-Portfolio/tree/main",
+      "tatin": "https://tatinzzz.github.io/EDM-Portfolio/",
+      "austin": "https://austincgarcia.github.io/AustinEDM/",
+      "greiden": "https://greidengueco.github.io/EDM-Portfolio/",
+      "cmhalili": "https://cmhalili.github.io/Tasks-EDM-Portfolio/",
+      "aljohn": "https://github.com/Aljohn0809/EDM-PORTFOLIO",
+      "lek": "https://leklaquindanum.github.io/EDM-Portfolio/",
+      "referenz": "https://referenz18.github.io/EDM-V3/",
+      "ryza": "https://ryzamanarang.github.io/EDM-Manarang/",
+      "munoz": "https://munoz-24-0431.github.io/EDM-Midterm-Task-Munoz/",
+      "pangilinan": "https://npangilinan-cca.github.io/EDM-N.Pangilinan/",
+      "dtx": "https://dtx-byte.github.io/Dxt_EDMPortfolio/",
+      "justine": "https://github.com/justine09902/justine09902/blob/main/README.md",
+      "iverson": "https://iverson748.github.io/EDM-Portfolio/",
+      "john": "https://github.com/jrecapor/EDM-John-Paul",
+      "darrel": "https://dsanchez05.github.io/EDM-Sanchez-Darrel-Matthew-C./",
+      "soguilon": "https://soguilon.github.io/EDM-Tasks-Portfolio/",
+      "bj": "https://bjiotiglao29.github.io/EDM-Portfolio/",
+      "zomue": "https://zomue.github.io/"
+    };
+
+    function handleKey(event) {
+      if (event.key === "Enter") {
+        const input = document.getElementById("searchInput").value.toLowerCase().trim();
+        for (const key in portfolioLinks) {
+          if (input.includes(key)) {
+            window.location.href = portfolioLinks[key];
+            return;
+          }
+        }
+        alert("No matching portfolio found.");
+      }
+    }
+  </script>
+</body>
+</html>
