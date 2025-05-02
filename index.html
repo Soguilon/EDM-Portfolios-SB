@@ -7,94 +7,140 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-    body {
+    :root {
+      --green: #00ff00;
+      --black: #000000;
+      --dark-green: #001a00;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(120deg, #000 30%, #001a00 70%);
-      color: #00ff00;
+      background: linear-gradient(to bottom, var(--black), var(--dark-green));
+      color: var(--green);
+      padding: 0;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
-      padding-top: 100px;
     }
 
     header {
-      font-size: 2.5rem;
-      color: #00ff00;
-      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-      margin-bottom: 30px;
-      animation: glowText 2s infinite alternate;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #000;
+      color: var(--green);
+      text-align: center;
+      padding: 20px;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 10px rgba(0, 255, 0, 0.3);
+      z-index: 10;
+    }
+
+    .container {
+      margin-top: 100px;
+      padding: 20px;
+      width: 100%;
+      max-width: 800px;
     }
 
     input[type="text"] {
-      padding: 15px 20px;
-      width: 60%;
-      max-width: 500px;
-      font-size: 1.2rem;
-      border: 2px solid #00ff00;
-      border-radius: 10px;
-      background-color: #000;
-      color: #00ff00;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      border: 2px solid var(--green);
+      border-radius: 8px;
+      background-color: var(--black);
+      color: var(--green);
       outline: none;
-      box-shadow: 0 0 10px #00ff00;
-      animation: glowBox 2s infinite alternate;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      transition: box-shadow 0.3s;
+    }
+
+    input[type="text"]:focus {
+      box-shadow: 0 0 15px var(--green);
     }
 
     #results {
-      max-width: 600px;
-      width: 80%;
-      text-align: left;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      max-height: 70vh;
+      overflow-y: auto;
     }
 
     .result-item {
-      background: #000;
-      color: #00ff00;
-      padding: 10px;
-      margin: 5px 0;
-      border: 1px solid #00ff00;
-      border-radius: 8px;
+      background: #0a0a0a;
+      border-left: 6px solid var(--green);
+      padding: 15px 20px;
+      border-radius: 10px;
+      color: var(--white);
       text-decoration: none;
-      display: block;
-      box-shadow: 0 0 10px #00ff00;
-      transition: background 0.2s;
+      transition: transform 0.2s, background 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
     }
 
     .result-item:hover {
       background: #002200;
+      transform: translateY(-3px);
     }
 
-    @keyframes glowText {
-      from { text-shadow: 0 0 10px #00ff00; }
-      to { text-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00; }
+    .result-item span {
+      font-weight: bold;
     }
 
-    @keyframes glowBox {
-      from { box-shadow: 0 0 10px #00ff00; }
-      to { box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
+    .no-results {
+      color: var(--green);
+      font-style: italic;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 600px) {
+      #results {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 900px) {
+      #results {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <header>EDM Portfolios of BSIS-I102:</header>
-  <input type="text" id="searchInput" placeholder="Search by last name..." oninput="handleSearch()" />
-  <div id="results"></div>
+  <header>EDM Portfolios of BSIS-I102</header>
+  <div class="container">
+    <input type="text" id="searchInput" placeholder="Search by last name..." oninput="handleSearch()" />
+    <div id="results"></div>
+  </div>
 
   <script>
     const portfolioLinks = {
       "Aguinaldo": "https://carlosa012.github.io/EDM-Portfolio/",
       "Amaro": "https://artjohnamaro.github.io/EDM-PORTFOLIO/",
       "Angeles": "https://cyjiix29.github.io/EDM-V3/",
+      "Boiles": "https://github.com/chan-edm",
       "Bondoc": "https://byronpogi.github.io/EDM-PORTFOLIO/",
-      "Bonifcaio": "https://github.com/zon0901/EDM-Portfolio",
+      "Bonificaio": "https://github.com/zon0901/EDM-Portfolio",
       "Cabrera": "https://mcab3.github.io/EDM-Portfolio/",
-      "Cariño": "https://github.com/Mark4864/EDM-Portfolio",
-      "Moses": "https://moses032005.github.io/EDM_Moses-David/",
+      "Cariño": "https://mark4864.github.io/EDM-Portfolio/",
+      "Castro": "https://moses032005.github.io/EDM_Moses-David/",
       "Cortez": "https://github.com/crtzk/EDM",
       "David": "https://davidlenard.github.io/EDM-David/",
       "Dela Rosa": "https://jerald240010.github.io/EDM-Portfolio/",
+      "Delos Reyes": "https://github.com/Nunoypogi123/Nunoypogi123",
       "Delrosario": "https://github.com/Restia-F/fdelrosario",
       "Divina": "https://princeeee26.github.io/EDM-Portfolio-Prince/",
       "Fajardo": "https://roannefajardo.github.io/EDM-Fajardo/",
@@ -104,10 +150,13 @@
       "Gueco": "https://greidengueco.github.io/EDM-Portfolio/",
       "Halili": "https://cmhalili.github.io/Tasks-EDM-Portfolio/",
       "Isaac": "https://github.com/Aljohn0809/EDM-PORTFOLIO",
+      "Lacsina": "https://cjslacsina.github.io/EDM-V3/",
       "Laquindanum": "https://leklaquindanum.github.io/EDM-Portfolio/",
       "Macula": "https://referenz18.github.io/EDM-V3/",
+      "Mallari": "https://vmallari24-hub.github.io/EDM-Portfolio/",
       "Manarang": "https://ryzamanarang.github.io/EDM-Manarang/",
       "Muñoz": "https://munoz-24-0431.github.io/EDM-Midterm-Task-Munoz/",
+      "Ordoña": "https://skyordona.github.io/EDM-Ordona/",
       "Pangilinan": "https://npangilinan-cca.github.io/EDM-N.Pangilinan/",
       "Pascubillo": "https://dtx-byte.github.io/Dxt_EDMPortfolio/",
       "Pineda": "https://github.com/justine09902/justine09902/blob/main/README.md",
@@ -124,25 +173,24 @@
       const resultsDiv = document.getElementById("results");
       resultsDiv.innerHTML = "";
 
-      if (!input) return;
-
       const matches = Object.entries(portfolioLinks).filter(([name]) =>
         name.toLowerCase().includes(input)
       );
 
       if (matches.length > 0) {
-        matches.forEach(([name, url]) => {
-          const link = document.createElement("a");
-          link.href = url;
-          link.target = "_blank";
-          link.className = "result-item";
-          link.textContent = `${name} ➤ ${url}`;
-          resultsDiv.appendChild(link);
+        matches.forEach(([name, link]) => {
+          const item = document.createElement("a");
+          item.href = link;
+          item.target = "_blank";
+          item.className = "result-item";
+          item.innerHTML = `<span>${name}</span><span>➜</span>`;
+          resultsDiv.appendChild(item);
         });
       } else {
-        resultsDiv.innerHTML = "<p style='color:#00ff00;'>No matching portfolios found.</p>";
+        resultsDiv.innerHTML = `<div class="no-results">No match found.</div>`;
       }
     }
   </script>
 </body>
 </html>
+
